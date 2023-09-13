@@ -1,0 +1,131 @@
+{% extends 'public/base_cpanel.html' %}
+<!--Cambiando el title-->
+{% block title %}Sistema Farmaceutico| Registrar proveedor{% endblock %}
+<!---->
+{% block customCSS %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename ='assets/css/file.css') }}" />
+{% endblock %}
+
+<!--Inicio del block-->
+{% block body %}
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">REGISTRAR NUEVO PROVEEDOR</h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10">
+      <form
+        class="form-horizontal mx-auto"
+        method="POST"
+        action="/form-registrar-proveedor"
+        autocomplete="off"
+        enctype="multipart/form-data">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="nombre_proveedor" class="form-label">
+                Nombre del proveedor
+              </label>
+              <input
+                type="text"
+                name="nombre_proveedor"
+                class="form-control"
+                required />
+            </div>
+            <div class="col-md-6">
+              <label for="apellido_proveedor" class="form-label">
+                Apellido del proveedor
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="apellido_proveedor"
+                required />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="sexo_proveedor" class="form-label">
+                Sexo del proveedor
+              </label>
+              <select
+                class="form-select"
+                name="sexo_proveedor"
+                aria-label="Default select example">
+                <option selected>Seleccione</option>
+                <option value="1">Masculino</option>
+                <option value="2">Femenino</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="telefono_proveedor" class="form-label">
+                Telefono del proveedor
+              </label>
+              <input
+                class="form-control"
+                type="text"
+                name="telefono_proveedor"
+                required />
+            </div>
+          </div>
+
+          <div class="row mt-2">
+            <div class="col-md-6">
+              <label for="email_proveedor" class="form-label">
+                Email del proveedor
+              </label>
+              <input
+                class="form-control"
+                type="email"
+                name="email_proveedor"
+                required />
+            </div>
+          </div>
+
+            <div class="col-md-6">
+              <label for="" class="form-label">
+                CARGAR IMAGEN DEL PROVEEDOR
+              </label>
+              <div class="avatar-upload">
+                <div class="avatar-edit">
+                  <input
+                    type="file"
+                    name="foto_proveedor"
+                    id="imageUpload"
+                    accept=".png, .jpg, .jpeg" />
+                  <label for="imageUpload"><i class="bi bi-pen"></i></label>
+                </div>
+                <div class="avatar-preview">
+                  <div class="avatar-preview">
+                    {% set url_avatar= url_for('static', filename
+                    ='assets/img/avatar.png') %}
+                    <div
+                      id="imagePreview"
+                      style="background-image: url('{{ url_avatar }}')"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3 mt-4 text-center">
+            <button type="submit" class="btn rounded-pill btn-primary">
+              Guardar registro ahora
+              <i class="bi bi-arrow-clockwise"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block customJS %}
+<script src="{{ url_for('static', filename ='assets/customJS/file.js') }}"></script>
+{% endblock %}

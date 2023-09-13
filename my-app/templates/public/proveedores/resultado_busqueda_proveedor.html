@@ -1,0 +1,44 @@
+{% for proveedor in dataBusqueda %}
+<tr id="proveedor_{{ proveedor.id_proveedor }}">
+  <td>{{ loop.index }}</td>
+  <td>{{ proveedor.nombre_proveedor }}</td>
+  <td>{{ proveedor.apellido_proveedor }}</td>
+  <td>{{ proveedor.sexo_proveedor }}</td>
+  <td>$ {{ '{:,.0f}'.format(proveedor.salario_proveedor).replace(',', '.')}}</td>
+  <td>
+    <a
+      href="/detalles-proveedor/{{ proveedor.id_proveedor }}"
+      title="Ver envio"
+      type="button"
+      class="btn btn-info btn-sm"
+      data-bs-toggle="tooltip"
+      data-bs-offset="0,4"
+      data-bs-placement="top"
+      data-bs-html="true"
+      title="<span>Ver detalles</span>">
+      <i class="bi bi-eye"></i>
+      Ver detalles
+    </a>
+    <a
+      href="{{ url_for('viewEditarproveedor', id = proveedor.id_proveedor) }}"
+      class="btn btn-success btn-sm"
+      tooltip="Actualizar Registro">
+      <i class="bi bi-arrow-clockwise"></i>
+      Actualizar
+    </a>
+    <a
+      href="#"
+      onclick="eliminarproveedor('{{ proveedor.id_proveedor }}');"
+      class="btn btn-danger btn-sm"
+      data-bs-toggle="tooltip"
+      data-bs-offset="0,4"
+      data-bs-placement="top"
+      data-bs-html="true"
+      title="<span>Eliminar proveedor {{ proveedor.nombre_proveedor }}</span>">
+      <i class="bi bi-trash3"></i>
+      Eliminar
+    </a>
+  </td>
+</tr>
+
+{% endfor %}

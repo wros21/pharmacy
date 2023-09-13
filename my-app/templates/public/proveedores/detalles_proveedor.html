@@ -1,0 +1,110 @@
+{% extends 'public/base_cpanel.html' %}
+<!--Cambiando el title-->
+{% block title %}Sistema Farmaceutico | Registrar Proveedor{% endblock %}
+<!---->
+{% block customCSS %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename ='assets/css/file.css') }}" />
+{% endblock %}
+
+<!--Inicio del block-->
+{% block body %}
+<!---->
+{% if (detalle_proveedor|length) %}
+<div class="card" style="border-radius: 0px !important">
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-12">
+      <h3 class="text-center mt-5 mb-3">
+        <a href="/lista-de-proveedors">
+          <i class="bi bi-arrow-left-circle"></i>
+        </a>
+        INFORMACIÓN DEL PROVEEDOR
+      </h3>
+      <hr />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mb-2">
+    <div class="col-md-10">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <label for="nombre_proveedor" class="form-label">
+              Nombre del proveedor
+            </label>
+            <br />
+            {{ detalle_proveedor.nombre_proveedor}}
+          </div>
+          <div class="col-md-6">
+            <label for="apellido_proveedor" class="form-label">
+              Apellido del proveedor
+            </label>
+            <br />
+            {{ detalle_proveedor.apellido_proveedor}}
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="sexo_proveedor" class="form-label">
+              Sexo del proveedor
+            </label>
+            <br />
+            {{ detalle_proveedor.sexo_proveedor}}
+          </div>
+          <div class="col-md-6">
+            <label for="telefono_proveedor" class="form-label">
+              Telefono del proveedor
+            </label>
+            <br />
+            {{ detalle_proveedor.telefono_proveedor}}
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="email_proveedor" class="form-label">
+              Email del proveedor
+            </label>
+            <br />
+            {{ detalle_proveedor.email_proveedor}}
+          </div>
+          <div class="col-md-6">
+            <label for="profesion_proveedor" class="form-label">
+              Profesión del proveedor
+            </label>
+            <br />
+            {{ detalle_proveedor.profesion_proveedor}}
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-6">
+            <label for="salario_proveedor" class="form-label">
+              Salario del proveedor
+            </label>
+            <br />
+            $ {{
+            '{:,.0f}'.format(detalle_proveedor.salario_proveedor).replace(',',
+            '.')}}
+          </div>
+          <div class="col-md-6">
+            <label for="" class="form-label"> IMAGEN DEL proveedor </label>
+            <br />
+            <img
+              style="width: 200px"
+              src="/static/fotos_proveedors/{{ detalle_proveedor.foto_proveedor }}"
+              alt="imagen-proveedor" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<h2 class="text-center">
+  No existe el proveedor 😭
+  <hr />
+</h2>
+{% endif %} {% endblock %}
