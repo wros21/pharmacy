@@ -1,6 +1,7 @@
-## CRUD con Python 🐍 MySQL 💾 y un Dashboard Asombroso 🚀
+####Wilhelm Ricardo Otzoy Santisteban - Grupo #2
+####2890-05-16758
 
-##### Aprende a desarrollar un sistema CRUD utilizando Python 🐍 y MySQL 💾 mientras creas un impresionante panel de control. Este curso te guiará a través de la creación de aplicaciones interactivas y eficientes, permitiéndote gestionar datos con facilidad.
+##### Sistema para una Farmaceutica mientras este tiene un CRUD para poder gestionar y hacer 
 
 ![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/Dashboard-python-login-urian-viera.png)
 
@@ -30,18 +31,10 @@
 ### Instrucciones para descarga 🔧
 
     Descarga el proyecto
-    Importa el archivo crud_python.sql a MySQL
+    Importa el archivo pharmacy.sql a MySQL
     Cambia los datos de conexión en el archivo conexionBD.py
     Crea el entono virtual (opcional)  `virtualenv env`
     Activas tu entorno virtual . env/Scripts/activate`
     Ejecutas el archivo `pip install -r requirements.txt` para instalar todos paquetes o   dependencias del proyecto.
-    Ingresa desde un navegador a http://127.0.0.1:5600/
+    Ingresa desde un navegador a http://127.0.0.1:8000/
 
-### Expresiones de Gratitud 🎁
-
-    Comenta a otros sobre este proyecto 📢
-    Invita una cerveza 🍺 o un café ☕
-    Paypal iamdeveloper86@gmail.com
-    Da las gracias públicamente 🤓.
-
-## No olvides SUSCRIBIRTE 👍
