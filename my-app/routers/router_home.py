@@ -300,14 +300,6 @@ def actualizarproducto():
         return redirect(url_for('lista_productos'))
 
 
-@app.route('/borrar-producto/<string:id>', methods=['GET'])
-def borrarUsuario(id):
-    resp = eliminarUsuario(id)
-    if resp:
-        flash('El Producto fue eliminado correctamente', 'success')
-        return redirect(url_for('usuarios'))
-
-
 @app.route('/borrar-producto/<string:id_producto>/<string:foto_producto>', methods=['GET'])
 def borrarproducto(id_producto, foto_producto):
     resp = eliminarproducto(id_producto, foto_producto)
