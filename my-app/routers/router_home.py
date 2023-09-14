@@ -200,15 +200,6 @@ def actualizarproveedor():
         return redirect(url_for('lista_proveedors'))
 
 
-@app.route("/lista-de-usuarios", methods=['GET'])
-def usuarios():
-    if 'conectado' in session:
-        resp_usuariosBD = lista_usuariosBD()
-        return render_template('public/usuarios/lista_usuarios.html', resp_usuariosBD=resp_usuariosBD)
-    else:
-        return redirect(url_for('inicioCpanel'))
-
-
 @app.route('/borrar-usuario/<string:id>', methods=['GET'])
 def borrarUsuario(id):
     resp = eliminarUsuario(id)
@@ -315,15 +306,6 @@ def actualizarproducto():
     resultData = procesar_actualizacion_form(request)
     if resultData:
         return redirect(url_for('lista_productos'))
-
-
-@app.route("/lista-de-usuarios", methods=['GET'])
-def usuarios():
-    if 'conectado' in session:
-        resp_usuariosBD = lista_usuariosBD()
-        return render_template('public/usuarios/lista_usuarios.html', resp_usuariosBD=resp_usuariosBD)
-    else:
-        return redirect(url_for('inicioCpanel'))
 
 
 @app.route('/borrar-producto/<string:id>', methods=['GET'])
