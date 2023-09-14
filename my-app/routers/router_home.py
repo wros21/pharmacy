@@ -199,7 +199,7 @@ def viewEditarproveedor(id):
 def actualizarproveedor():
     resultData = procesar_actualizacion_form(request)
     if resultData:
-        return redirect(url_for('lista_proveedors'))
+        return redirect(url_for('lista_proveedores'))
 
 
 @app.route('/borrar-proveedor/<string:id_proveedor>/<string:foto_proveedor>', methods=['GET'])
