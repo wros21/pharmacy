@@ -7,6 +7,8 @@ from mysql.connector.errors import Error
 from controllers.funciones_home import *
 
 PATH_URL = "public/empleados"
+PATH_URL = "public/proveedores"
+PATH_URL = "public/productos"
 
 
 @app.route('/registrar-empleado', methods=['GET'])
@@ -116,8 +118,6 @@ def borrarEmpleado(id_empleado, foto_empleado):
 
 
 ###Proveedores###
-PATH_URL = "public/proveedores"
-
 
 @app.route('/registrar-proveedor', methods=['GET'])
 def viewFormProveedor():
@@ -215,9 +215,6 @@ def borrarproveedor(id_proveedor, foto_proveedor):
 
 
 ####Productos ####
-
-PATH_URL = "public/productos"
-
 
 @app.route('/registrar-producto', methods=['GET'])
 def viewFormproducto():
