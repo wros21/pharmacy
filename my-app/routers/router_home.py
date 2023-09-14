@@ -120,7 +120,7 @@ PATH_URL = "public/proveedors"
 
 
 @app.route('/registrar-proveedor', methods=['GET'])
-def viewFormproveedor():
+def viewFormProveedor():
     if 'conectado' in session:
         return render_template(f'{PATH_URL}/form_proveedor.html')
     else:
@@ -129,7 +129,7 @@ def viewFormproveedor():
 
 
 @app.route('/form-registrar-proveedor', methods=['POST'])
-def formproveedor():
+def formProveedor():
     if 'conectado' in session:
         if 'foto_proveedor' in request.files:
             foto_perfil = request.files['foto_proveedor']
