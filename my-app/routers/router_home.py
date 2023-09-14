@@ -137,7 +137,7 @@ def formProveedor():
             foto_perfil = request.files['foto_proveedor']
             resultado = procesar_form_proveedor(request.form, foto_perfil)
             if resultado:
-                return redirect(url_for('lista_proveedors'))
+                return redirect(url_for('lista_proveedores'))
             else:
                 flash('El proveedor NO fue registrado.', 'error')
                 return render_template(f'{PATH_URL_PROVEEDORES}/form_proveedor.html')
@@ -146,10 +146,10 @@ def formProveedor():
         return redirect(url_for('inicio'))
 
 
-@app.route('/lista-de-proveedors', methods=['GET'])
+@app.route('/lista-de-proveedores', methods=['GET'])
 def lista_proveedores():
     if 'conectado' in session:
-        return render_template(f'{PATH_URL_PROVEEDORES}/lista_proveedores.html', proveedors=sql_lista_proveedorsBD())
+        return render_template(f'{PATH_URL_PROVEEDORES}/lista_proveedores.html', proveedors=sql_lista_proveedoresBD())
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
