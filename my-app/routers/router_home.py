@@ -6,9 +6,9 @@ from mysql.connector.errors import Error
 # Importando cenexión a BD
 from controllers.funciones_home import *
 
-PATH_URL = "public/empleados"
-PATH_URL = "public/proveedores"
-PATH_URL = "public/productos"
+PATH_URL_EMPLEADOS = "public/empleados"
+PATH_URL_PROVEEDORES = "public/proveedores"
+PATH_URL_PRODUCTOS = "public/productos"
 
 
 @app.route('/registrar-empleado', methods=['GET'])
@@ -115,7 +115,6 @@ def borrarEmpleado(id_empleado, foto_empleado):
     if resp:
         flash('El Empleado fue eliminado correctamente', 'success')
         return redirect(url_for('lista_empleados'))
-"""
 
 ###Proveedores###
 
