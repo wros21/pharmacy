@@ -14,7 +14,6 @@
       <i class="bx bx-chevron-left bx-sm align-middle"></i>
     </a>
   </div>
-
   <div class="menu-inner-shadow"></div>
   <ul class="menu-inner py-5">
     <li
@@ -33,14 +32,14 @@
     </li>
      <li
       class="menu-item {% if request.path == '/registrar-proveedor' %} active {% endif %}">
-      <a href="{{ url_for('viewFormProveedor') }}" class="menu-link">
+      <a href="{{ url_for('viewFormproveedor') }}" class="menu-link">
         <i class="menu-icon bi bi-person-bounding-box"></i>
         <div data-i18n="Basic">Registrar Proveedor</div>
       </a>
     </li>
      <li
       class="menu-item {% if request.path == '/registrar-productos' %} active {% endif %}">
-      <a href="{{ url_for('viewFormProducto') }}" class="menu-link">
+      <a href="{{ url_for('viewFormproducto') }}" class="menu-link">
         <i class="menu-icon bi bi-person-bounding-box"></i>
         <div data-i18n="Basic">Registrar Productos</div>
       </a>
