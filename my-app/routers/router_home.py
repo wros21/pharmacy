@@ -200,14 +200,6 @@ def actualizarproveedor():
         return redirect(url_for('lista_proveedors'))
 
 
-@app.route('/borrar-usuario/<string:id>', methods=['GET'])
-def borrarUsuario(id):
-    resp = eliminarUsuario(id)
-    if resp:
-        flash('El Usuario fue eliminado correctamente', 'success')
-        return redirect(url_for('usuarios'))
-
-
 @app.route('/borrar-proveedor/<string:id_proveedor>/<string:foto_proveedor>', methods=['GET'])
 def borrarproveedor(id_proveedor, foto_proveedor):
     resp = eliminarproveedor(id_proveedor, foto_proveedor)
