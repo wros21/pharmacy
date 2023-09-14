@@ -378,7 +378,7 @@ def eliminarEmpleado(id_empleado, foto_empleado):
 
 ######Proveedores#####
 
-ef procesar_form_proveedor(dataForm, foto_perfil):
+def procesar_form_proveedor(dataForm, foto_perfil):
 
     result_foto_perfil = procesar_imagen_perfil(foto_perfil)
     try:
