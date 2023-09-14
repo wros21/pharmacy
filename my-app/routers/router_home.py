@@ -116,7 +116,7 @@ def borrarEmpleado(id_empleado, foto_empleado):
 
 
 ###Proveedores###
-PATH_URL = "public/proveedors"
+PATH_URL = "public/proveedores"
 
 
 @app.route('/registrar-proveedor', methods=['GET'])
