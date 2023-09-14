@@ -11,12 +11,12 @@ PATH_URL_PROVEEDORES = "public/proveedores"
 PATH_URL_PRODUCTOS = "public/productos"
 
 
-@app.route('/ruta-de-empleados', methods=['GET'])
+#@app.route('/ruta-de-empleados', methods=['GET'])
 #def rutaEmpleados():
-##@app.route('/registrar-empleado', methods=['GET'])
+@app.route('/registrar-empleado', methods=['GET'])
 def viewFormEmpleado():
     if 'conectado' in session:
-        return render_template(f'{PATH_URL}/form_empleado.html')
+        return render_template(f'{PATH_URL_EMPLEADOS}/form_empleado.html')
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -32,7 +32,7 @@ def formEmpleado():
                 return redirect(url_for('lista_empleados'))
             else:
                 flash('El empleado NO fue registrado.', 'error')
-                return render_template(f'{PATH_URL}/form_empleado.html')
+                return render_template(f'{PATH_URL_EMPLEADOS}/form_empleado.html')
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -41,7 +41,7 @@ def formEmpleado():
 @app.route('/lista-de-empleados', methods=['GET'])
 def lista_empleados():
     if 'conectado' in session:
-        return render_template(f'{PATH_URL}/lista_empleados.html', empleados=sql_lista_empleadosBD())
+        return render_template(f'{PATH_URL_EMPLEADOS}/lista_empleados.html', empleados=sql_lista_empleadosBD())
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -56,7 +56,7 @@ def detalleEmpleado(idEmpleado=None):
             return redirect(url_for('inicio'))
         else:
             detalle_empleado = sql_detalles_empleadosBD(idEmpleado) or []
-            return render_template(f'{PATH_URL}/detalles_empleado.html', detalle_empleado=detalle_empleado)
+            return render_template(f'{PATH_URL_EMPLEADOS}/detalles_empleado.html', detalle_empleado=detalle_empleado)
     else:
         flash('Primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -67,7 +67,7 @@ def detalleEmpleado(idEmpleado=None):
 def viewBuscarEmpleadoBD():
     resultadoBusqueda = buscarEmpleadoBD(request.json['busqueda'])
     if resultadoBusqueda:
-        return render_template(f'{PATH_URL}/resultado_busqueda_empleado.html', dataBusqueda=resultadoBusqueda)
+        return render_template(f'{PATH_URL_EMPLEADOS}/resultado_busqueda_empleado.html', dataBusqueda=resultadoBusqueda)
     else:
         return jsonify({'fin': 0})
 
@@ -77,7 +77,7 @@ def viewEditarEmpleado(id):
     if 'conectado' in session:
         respuestaEmpleado = buscarEmpleadoUnico(id)
         if respuestaEmpleado:
-            return render_template(f'{PATH_URL}/form_empleado_update.html', respuestaEmpleado=respuestaEmpleado)
+            return render_template(f'{PATH_URL_EMPLEADOS}/form_empleado_update.html', respuestaEmpleado=respuestaEmpleado)
         else:
             flash('El empleado no existe.', 'error')
             return redirect(url_for('inicio'))
@@ -124,7 +124,7 @@ def borrarEmpleado(id_empleado, foto_empleado):
 ##@app.route('/registrar-proveedor', methods=['GET'])
 def viewFormProveedor():
     if 'conectado' in session:
-        return render_template(f'{PATH_URL}/form_proveedor.html')
+        return render_template(f'{PATH_URL_PROVEEDORES}/form_proveedor.html')
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -140,7 +140,7 @@ def formProveedor():
                 return redirect(url_for('lista_proveedors'))
             else:
                 flash('El proveedor NO fue registrado.', 'error')
-                return render_template(f'{PATH_URL}/form_proveedor.html')
+                return render_template(f'{PATH_URL_PROVEEDORES}/form_proveedor.html')
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -149,7 +149,7 @@ def formProveedor():
 @app.route('/lista-de-proveedors', methods=['GET'])
 def lista_proveedors():
     if 'conectado' in session:
-        return render_template(f'{PATH_URL}/lista_proveedors.html', proveedors=sql_lista_proveedorsBD())
+        return render_template(f'{PATH_URL_PROVEEDORES}/lista_proveedors.html', proveedors=sql_lista_proveedorsBD())
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -164,7 +164,7 @@ def detalleproveedor(idproveedor=None):
             return redirect(url_for('inicio'))
         else:
             detalle_proveedor = sql_detalles_proveedorsBD(idproveedor) or []
-            return render_template(f'{PATH_URL}/detalles_proveedor.html', detalle_proveedor=detalle_proveedor)
+            return render_template(f'{PATH_URL_PROVEEDORES}/detalles_proveedor.html', detalle_proveedor=detalle_proveedor)
     else:
         flash('Primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -175,7 +175,7 @@ def detalleproveedor(idproveedor=None):
 def viewBuscarproveedorBD():
     resultadoBusqueda = buscarproveedorBD(request.json['busqueda'])
     if resultadoBusqueda:
-        return render_template(f'{PATH_URL}/resultado_busqueda_proveedor.html', dataBusqueda=resultadoBusqueda)
+        return render_template(f'{PATH_URL_PROVEEDORES}/resultado_busqueda_proveedor.html', dataBusqueda=resultadoBusqueda)
     else:
         return jsonify({'fin': 0})
 
@@ -185,7 +185,7 @@ def viewEditarproveedor(id):
     if 'conectado' in session:
         respuestaproveedor = buscarproveedorUnico(id)
         if respuestaproveedor:
-            return render_template(f'{PATH_URL}/form_proveedor_update.html', respuestaproveedor=respuestaproveedor)
+            return render_template(f'{PATH_URL_PROVEEDORES}/form_proveedor_update.html', respuestaproveedor=respuestaproveedor)
         else:
             flash('El proveedor no existe.', 'error')
             return redirect(url_for('inicio'))
@@ -222,7 +222,7 @@ def borrarproveedor(id_proveedor, foto_proveedor):
 ##@app.route('/registrar-producto', methods=['GET'])
 def viewFormproducto():
     if 'conectado' in session:
-        return render_template(f'{PATH_URL}/form_producto.html')
+        return render_template(f'{PATH_URL_PRODUCTOS}/form_producto.html')
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -238,7 +238,7 @@ def formproducto():
                 return redirect(url_for('lista_productos'))
             else:
                 flash('El producto NO fue registrado.', 'error')
-                return render_template(f'{PATH_URL}/form_producto.html')
+                return render_template(f'{PATH_URL_PRODUCTOS}/form_producto.html')
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -247,7 +247,7 @@ def formproducto():
 @app.route('/lista-de-productos', methods=['GET'])
 def lista_productos():
     if 'conectado' in session:
-        return render_template(f'{PATH_URL}/lista_productos.html', productos=sql_lista_productosBD())
+        return render_template(f'{PATH_URL_PRODUCTOS}/lista_productos.html', productos=sql_lista_productosBD())
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -262,7 +262,7 @@ def detalleproducto(idproducto=None):
             return redirect(url_for('inicio'))
         else:
             detalle_producto = sql_detalles_productosBD(idproducto) or []
-            return render_template(f'{PATH_URL}/detalles_producto.html', detalle_producto=detalle_producto)
+            return render_template(f'{PATH_URL_PRODUCTOS}/detalles_producto.html', detalle_producto=detalle_producto)
     else:
         flash('Primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
@@ -273,7 +273,7 @@ def detalleproducto(idproducto=None):
 def viewBuscarproductoBD():
     resultadoBusqueda = buscarproductoBD(request.json['busqueda'])
     if resultadoBusqueda:
-        return render_template(f'{PATH_URL}/resultado_busqueda_producto.html', dataBusqueda=resultadoBusqueda)
+        return render_template(f'{PATH_URL_PRODUCTOS}/resultado_busqueda_producto.html', dataBusqueda=resultadoBusqueda)
     else:
         return jsonify({'fin': 0})
 
@@ -283,7 +283,7 @@ def viewEditarproducto(id):
     if 'conectado' in session:
         respuestaproducto = buscarproductoUnico(id)
         if respuestaproducto:
-            return render_template(f'{PATH_URL}/form_producto_update.html', respuestaproducto=respuestaproducto)
+            return render_template(f'{PATH_URL_PRODUCTOS}/form_producto_update.html', respuestaproducto=respuestaproducto)
         else:
             flash('El producto no existe.', 'error')
             return redirect(url_for('inicio'))
