@@ -1,6 +1,6 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %}Sistema Farmaceutico| Registrar Empleado{% endblock %}
+{% block title %}Sistema Farmaceutico| Registrar Producto{% endblock %}
 <!---->
 {% block customCSS %}
 <link
@@ -23,103 +23,53 @@
       <form
         class="form-horizontal mx-auto"
         method="POST"
-        action="/form-registrar-empleado"
+        action="/form-registrar-producto"
         autocomplete="off"
         enctype="multipart/form-data">
         <div class="card-body">
           <div class="row">
             <div class="col-md-6">
-              <label for="nombre_empleado" class="form-label">
-                Nombre del empleado
+              <label for="nombre_producto" class="form-label">
+                Nombre del Producto
               </label>
               <input
                 type="text"
-                name="nombre_empleado"
+                name="nombre_producto"
                 class="form-control"
                 required />
             </div>
             <div class="col-md-6">
-              <label for="apellido_empleado" class="form-label">
-                Apellido del empleado
+              <label for="cantidad_producto" class="form-label">
+                Cantidad del Producto
               </label>
               <input
                 class="form-control"
                 type="text"
-                name="apellido_empleado"
-                required />
-            </div>
-          </div>
-
-          <div class="row mt-2">
-            <div class="col-md-6">
-              <label for="sexo_empleado" class="form-label">
-                Sexo del empleado
-              </label>
-              <select
-                class="form-select"
-                name="sexo_empleado"
-                aria-label="Default select example">
-                <option selected>Seleccione</option>
-                <option value="1">Masculino</option>
-                <option value="2">Femenino</option>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <label for="telefono_empleado" class="form-label">
-                Telefono del empleado
-              </label>
-              <input
-                class="form-control"
-                type="text"
-                name="telefono_empleado"
+                name="cantidad_producto"
                 required />
             </div>
           </div>
-
           <div class="row mt-2">
             <div class="col-md-6">
-              <label for="email_empleado" class="form-label">
-                Email del empleado
-              </label>
-              <input
-                class="form-control"
-                type="email"
-                name="email_empleado"
-                required />
-            </div>
-            <div class="col-md-6">
-              <label for="profesion_empleado" class="form-label">
-                Profesión del empleado
+              <label for="precio_producto" class="form-label">
+                Precio del Producto
               </label>
               <input
                 class="form-control"
                 type="text"
-                name="profesion_empleado"
-                required />
-            </div>
-          </div>
-
-          <div class="row mt-2">
-            <div class="col-md-6">
-              <label for="salario_empleado" class="form-label">
-                Salario del empleado
-              </label>
-              <input
-                class="form-control"
-                type="text"
-                name="salario_empleado"
-                id="salario_empleado"
+                name="precio_producto"
+                id="precio_producto"
                 required />
             </div>
             <div class="col-md-6">
               <label for="" class="form-label">
-                CARGAR IMAGEN DEL EMPLEADO
+                CARGAR IMAGEN DEL PRODUCTO
               </label>
               <div class="avatar-upload">
                 <div class="avatar-edit">
                   <input
                     type="file"
-                    name="foto_empleado"
+                    name="foto_producto"
                     id="imageUpload"
                     accept=".png, .jpg, .jpeg" />
                   <label for="imageUpload"><i class="bi bi-pen"></i></label>

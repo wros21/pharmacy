@@ -1,6 +1,6 @@
 {% extends 'public/base_cpanel.html' %}
 <!--Cambiando el title-->
-{% block title %}Crud con Python 🐍 | Registrar Empleado{% endblock %}
+{% block title %}Sistema Farmaceutico | Registrar Productos{% endblock %}
 <!---->
 {% block customCSS %}
 <link
@@ -19,7 +19,7 @@
         <a href="/lista-de-empleados">
           <i class="bi bi-arrow-left-circle"></i>
         </a>
-        INFORMACIÓN DEL EMPLEADO
+        INFORMACIÓN DEL PRODUCTO
       </h3>
       <hr />
     </div>
@@ -30,15 +30,15 @@
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <label for="nombre_empleado" class="form-label">
-              Nombre del empleado
+            <label for="nombre_producto" class="form-label">
+              Nombre del producto
             </label>
             <br />
             {{ detalle_empleado.nombre_empleado}}
           </div>
           <div class="col-md-6">
-            <label for="apellido_empleado" class="form-label">
-              Apellido del empleado
+            <label for="detalle_producto" class="form-label">
+              Detalle del producto
             </label>
             <br />
             {{ detalle_empleado.apellido_empleado}}
