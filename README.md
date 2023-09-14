@@ -3,23 +3,6 @@
 
 ##### Sistema para una Farmaceutica mientras este tiene un CRUD para poder gestionar y hacer 
 
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/Dashboard-python-login-urian-viera.png)
-
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/dashboard-python-crear-user-urian-viera.png)
-
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/dashboard-python-recuperar-clave-urian-viera.png)
-
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/dashborad-python-home-urian-viera.png)
-
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/dashboard-python-registrar-cliente-urian-viera.png)
-
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/dashboard-python-lista-empleados-urian-viera.png)
-
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/dashboard-python-lista-usuarios-urian-viera.png)
-
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/dashboard-python-editar-perfil-urian-viera.png)
-
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/dashboard-python-reporte-empleados-urian-viera.png)
 
 ### Requerimientos 📋
 
