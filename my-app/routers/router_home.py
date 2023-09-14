@@ -115,7 +115,7 @@ def borrarEmpleado(id_empleado, foto_empleado):
     if resp:
         flash('El Empleado fue eliminado correctamente', 'success')
         return redirect(url_for('lista_empleados'))
-
+"""
 
 ###Proveedores###
 
@@ -306,7 +306,7 @@ def borrarproducto(id_producto, foto_producto):
 
 
 
-### fin productos###
+### fin productos###"""
 
 
 @app.route("/descargar-informe-empleados/", methods=['GET'])
