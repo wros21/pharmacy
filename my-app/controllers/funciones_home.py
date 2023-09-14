@@ -80,7 +80,7 @@ def sql_lista_empleadosBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = (f"""
+                querySQL = ("""
                     SELECT 
                         e.id_empleado,
                         e.nombre_empleado, 
@@ -99,7 +99,7 @@ def sql_lista_empleadosBD():
         return empleadosBD
     except Exception as e:
         print(
-            f"Errro en la función sql_lista_empleadosBD: {e}")
+            f"Error en la función sql_lista_empleadosBD: {e}")
         return None
 
 
@@ -200,7 +200,7 @@ def generarReporteExcel():
         for fila_num in range(2, hoja.max_row + 1):
             columna = 7  # Columna G
             celda = hoja.cell(row=fila_num, column=columna)
-            celda.number_format = formato_moneda_colombiana
+            celda.number_format = formato_moneda_guatemalteco
 
     fecha_actual = datetime.datetime.now()
     archivoExcel = f"Reporte_empleados_{fecha_actual.strftime('%Y_%m_%d')}.xlsx"
@@ -412,7 +412,7 @@ def procesar_imagen_perfil(foto):
 
         # Construir la ruta completa de subida del archivo
         basepath = os.path.abspath(os.path.dirname(__file__))
-        upload_dir = os.path.join(basepath, f'../static/fotos_proveedors/')
+        upload_dir = os.path.join(basepath, f'../static/fotos_proveedores/')
 
         # Validar si existe la ruta y crearla si no existe
         if not os.path.exists(upload_dir):
@@ -552,7 +552,7 @@ def generarReporteExcel():
         for fila_num in range(2, hoja.max_row + 1):
             columna = 7  # Columna G
             celda = hoja.cell(row=fila_num, column=columna)
-            celda.number_format = formato_moneda_colombiana
+            celda.number_format = formato_moneda_guatemalteco
 
     fecha_actual = datetime.datetime.now()
     archivoExcel = f"Reporte_proveedors_{fecha_actual.strftime('%Y_%m_%d')}.xlsx"
