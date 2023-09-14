@@ -12,7 +12,7 @@ PATH_URL_PRODUCTOS = "public/productos"
 
 
 @app.route('/ruta-de-empleados', methods=['GET'])
-def rutaEmpleados():
+#def rutaEmpleados():
 ##@app.route('/registrar-empleado', methods=['GET'])
 def viewFormEmpleado():
     if 'conectado' in session:
@@ -120,7 +120,7 @@ def borrarEmpleado(id_empleado, foto_empleado):
 
 ###Proveedores###
 @app.route('/ruta-de-proveedores', methods=['GET'])
-def rutaProveedores():
+#def rutaProveedores():
 ##@app.route('/registrar-proveedor', methods=['GET'])
 def viewFormProveedor():
     if 'conectado' in session:
@@ -218,7 +218,7 @@ def borrarproveedor(id_proveedor, foto_proveedor):
 
 ####Productos ####
 @app.route('/ruta-de-productos', methods=['GET'])
-def rutaProductos():
+#def rutaProductos():
 ##@app.route('/registrar-producto', methods=['GET'])
 def viewFormproducto():
     if 'conectado' in session:
