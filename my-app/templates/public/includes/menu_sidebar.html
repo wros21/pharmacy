@@ -31,18 +31,25 @@
         <div data-i18n="Boxicons">Lista de Empleados</div>
       </a>
     </li>
-    <li
-      class="menu-item {% if request.path == '/descargar-informe-empleados' %} active {% endif %}">
-      <a href="/descargar-informe-empleados" class="menu-link">
-        <i class="menu-icon bi bi-file-earmark-spreadsheet-fill"></i>
-        <div data-i18n="Tables">Proveedores</div>
+     <li
+      class="menu-item {% if request.path == '/registrar-proveedor' %} active {% endif %}">
+      <a href="{{ url_for('viewFormEmpleado') }}" class="menu-link">
+        <i class="menu-icon bi bi-person-bounding-box"></i>
+        <div data-i18n="Basic">Registrar Proveedor</div>
       </a>
     </li>
     <li
-      class="menu-item {% if request.path == '/descargar-informe-empleados' %} active {% endif %}">
-      <a href="/descargar-informe-empleados" class="menu-link">
-        <i class="menu-icon bi bi-file-earmark-spreadsheet-fill"></i>
-        <div data-i18n="Tables">Productos</div>
+      class="menu-item {% if request.path == '/lista-de-productos' %} active{% endif %}">
+      <a href="/lista-de-empleados" class="menu-link">
+        <i class="menu-icon bi bi-person-lines-fill"></i>
+        <div data-i18n="Boxicons">Lista de Productos</div>
+      </a>
+    </li>
+    <li
+      class="menu-item {% if request.path == '/registrar-productos' %} active {% endif %}">
+      <a href="{{ url_for('viewFormEmpleado') }}" class="menu-link">
+        <i class="menu-icon bi bi-person-bounding-box"></i>
+        <div data-i18n="Basic">Registrar Productos</div>
       </a>
     </li>
     <li
@@ -50,6 +57,13 @@
       <a href="/lista-de-usuarios" class="menu-link">
         <i class="menu-icon bi bi-person-lines-fill"></i>
         <div data-i18n="Tables">Lista de Usuarios</div>
+      </a>
+    </li>
+    <li
+      class="menu-item {% if request.path == '/lista-de-productos' %} active {% endif %}">
+      <a href="/lista-de-usuarios" class="menu-link">
+        <i class="menu-icon bi bi-person-lines-fill"></i>
+        <div data-i18n="Tables">Lista de Productos</div>
       </a>
     </li>
     <li
