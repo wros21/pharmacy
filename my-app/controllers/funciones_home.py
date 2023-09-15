@@ -621,7 +621,7 @@ def procesar_actualizacion_form(data):
         print(f"Ocurrió un error en procesar_actualizacion_form: {e}")
         return None
 
-"""def eliminarProveedor(id_proveedor, foto_proveedor):
+def eliminarProveedor(id_proveedor, foto_proveedor):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
@@ -644,7 +644,7 @@ def procesar_actualizacion_form(data):
         print(f"Error en eliminarProveedor : {e}")
         return []
 
-"""
+
 
 
 ###FIN PROVEEDORES####

@@ -149,7 +149,7 @@ def formProveedor():
 @app.route('/lista-de-proveedores', methods=['GET'])
 def lista_proveedores():
     if 'conectado' in session:
-        return render_template(f'{PATH_URL_PROVEEDORES}/lista_proveedores.html', proveedors=sql_lista_proveedoresBD())
+        return render_template(f'{PATH_URL_PROVEEDORES}/lista_proveedores.html', proveedores=sql_lista_proveedoresBD())
     else:
         flash('primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
