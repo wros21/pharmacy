@@ -61,7 +61,7 @@
                   Ver detalles
                 </a>
                 <a
-                  href="{{ url_for('viewEditarProveedor', id = proveedor.id_proveedor) }}"
+                  href="{{ url_for('viewEditarproveedor', id = proveedor.id_proveedor) }}"
                   class="btn btn-success btn-sm"
                   tooltip="Actualizar Registro">
                   <i class="bi bi-arrow-clockwise"></i>
@@ -69,7 +69,7 @@
                 </a>
                 <a
                   href="#"
-                  onclick="eliminarProveedor('{{ proveedor.id_proveedor }}','{{ proveedor.foto_proveedor }}');"
+                  onclick="eliminarproveedor('{{ proveedor.id_proveedor }}','{{ proveedor.foto_proveedor }}');"
                   class="btn btn-danger btn-sm"
                   data-bs-toggle="tooltip"
                   data-bs-offset="0,4"
