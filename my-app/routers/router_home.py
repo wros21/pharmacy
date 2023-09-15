@@ -163,14 +163,14 @@ def detalleproveedor(idproveedor=None):
         if idproveedor is None:
             return redirect(url_for('inicio'))
         else:
-            detalle_proveedor = sql_detalles_proveedorsBD(idproveedor) or []
+            detalle_proveedor = sql_detalles_proveedoresBD(idproveedor) or []
             return render_template(f'{PATH_URL_PROVEEDORES}/detalles_proveedor.html', detalle_proveedor=detalle_proveedor)
     else:
         flash('Primero debes iniciar sesión.', 'error')
         return redirect(url_for('inicio'))
 
 
-# Buscadon de proveedors
+# Buscadon de proveedores
 @app.route("/buscando-proveedor", methods=['POST'])
 def viewBuscarproveedorBD():
     resultadoBusqueda = buscarproveedorBD(request.json['busqueda'])
@@ -207,7 +207,7 @@ def borrarproveedor(id_proveedor, foto_proveedor):
     resp = eliminarproveedor(id_proveedor, foto_proveedor)
     if resp:
         flash('El proveedor fue eliminado correctamente', 'success')
-        return redirect(url_for('lista_proveedors'))
+        return redirect(url_for('lista_proveedores'))
 
 
 
