@@ -156,14 +156,14 @@ def lista_proveedores():
 
 
 @app.route("/detalles-proveedor/", methods=['GET'])
-@app.route("/detalles-proveedor/<int:idproveedor>", methods=['GET'])
-def detalleproveedor(idproveedor=None):
+@app.route("/detalles-proveedor/<int:idProveedor>", methods=['GET'])
+def detalleproveedor(idProveedor=None):
     if 'conectado' in session:
         # Verificamos si el parámetro idproveedor es None o no está presente en la URL
-        if idproveedor is None:
+        if idProveedor is None:
             return redirect(url_for('inicio'))
         else:
-            detalle_proveedor = sql_detalles_proveedoresBD(idproveedor) or []
+            detalle_proveedor = sql_detalles_proveedoresBD(idProveedor) or []
             return render_template(f'{PATH_URL_PROVEEDORES}/detalles_proveedor.html', detalle_proveedor=detalle_proveedor)
     else:
         flash('Primero debes iniciar sesión.', 'error')
@@ -254,14 +254,14 @@ def lista_productos():
 
 
 @app.route("/detalles-producto/", methods=['GET'])
-@app.route("/detalles-producto/<int:idproducto>", methods=['GET'])
-def detalleproducto(idproducto=None):
+@app.route("/detalles-producto/<int:idProducto>", methods=['GET'])
+def detalleproducto(idProducto=None):
     if 'conectado' in session:
         # Verificamos si el parámetro idproducto es None o no está presente en la URL
-        if idproducto is None:
+        if idProducto is None:
             return redirect(url_for('inicio'))
         else:
-            detalle_producto = sql_detalles_productosBD(idproducto) or []
+            detalle_producto = sql_detalles_productosBD(idProducto) or []
             return render_template(f'{PATH_URL_PRODUCTOS}/detalles_producto.html', detalle_producto=detalle_producto)
     else:
         flash('Primero debes iniciar sesión.', 'error')
