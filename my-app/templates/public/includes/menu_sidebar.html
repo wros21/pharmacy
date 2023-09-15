@@ -38,6 +38,13 @@
       </a>
     </li>
     <li
+      class="menu-item {% if request.path == '/lista-de-proveedores' %} active {% endif %}">
+      <a href="/lista-de-proveedores" class="menu-link">
+        <i class="menu-icon bi bi-person-lines-fill"></i>
+        <div data-i18n="Tables">Lista de Proveedores</div>
+      </a>
+    </li>  
+    <li
       class="menu-item {% if request.path == '/registrar-productos' %} active {% endif %}">
       <a href="{{ url_for('viewFormproducto') }}" class="menu-link">
         <i class="menu-icon bi bi-person-bounding-box"></i>
@@ -56,13 +63,6 @@
       <a href="/lista-de-usuarios" class="menu-link">
         <i class="menu-icon bi bi-person-lines-fill"></i>
         <div data-i18n="Tables">Lista de Usuarios</div>
-      </a>
-    </li>
-    <li
-      class="menu-item {% if request.path == '/lista-de-proveedores' %} active {% endif %}">
-      <a href="/lista-de-proveedores" class="menu-link">
-        <i class="menu-icon bi bi-person-lines-fill"></i>
-        <div data-i18n="Tables">Lista de Proveedores</div>
       </a>
     </li>
     <li
