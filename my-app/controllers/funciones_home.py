@@ -450,8 +450,8 @@ def sql_lista_proveedoresBD():
                     ORDER BY e.id_proveedor DESC
                     """)
                 cursor.execute(querySQL,)
-                proveedorsBD = cursor.fetchall()
-        return proveedorsBD
+                proveedoresBD = cursor.fetchall()
+        return proveedoresBD
     except Exception as e:
         print(
             f"Errro en la función sql_lista_proveedoresBD: {e}")
@@ -481,8 +481,8 @@ def sql_detalles_proveedoresBD(idproveedor):
                     ORDER BY e.id_proveedor DESC
                     """)
                 cursor.execute(querySQL, (idproveedor,))
-                proveedorsBD = cursor.fetchone()
-        return proveedorsBD
+                proveedoresBD = cursor.fetchone()
+        return proveedoresBD
     except Exception as e:
         print(
             f"Errro en la función sql_detalles_proveedoresBD: {e}")
@@ -509,8 +509,8 @@ def proveedoresReporte():
                     ORDER BY e.id_proveedor DESC
                     """)
                 cursor.execute(querySQL,)
-                proveedorsBD = cursor.fetchall()
-        return proveedorsBD
+                proveedoresBD = cursor.fetchall()
+        return proveedoresBD
     except Exception as e:
         print(
             f"Errro en la función proveedoresReporte: {e}")
@@ -561,8 +561,8 @@ def buscarproveedorUnico(id):
                         WHERE e.id_proveedor =%s LIMIT 1
                     """)
                 mycursor.execute(querySQL, (id,))
-                proveedor = mycursor.fetchone()
-                return proveedor
+                proveedoresBD = mycursor.fetchone()
+                return proveedoresBD
 
     except Exception as e:
         print(f"Ocurrió un error en def buscarproveedorUnico: {e}")
