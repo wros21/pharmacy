@@ -446,7 +446,7 @@ def sql_lista_proveedoresBD():
                             WHEN e.sexo_proveedor = 1 THEN 'Masculino'
                             ELSE 'Femenino'
                         END AS sexo_proveedor
-                    FROM tbl_proveedors AS e
+                    FROM tbl_proveedor AS e
                     ORDER BY e.id_proveedor DESC
                     """)
                 cursor.execute(querySQL,)
@@ -476,7 +476,7 @@ def sql_detalles_proveedoresBD(idproveedor):
                         e.email_proveedor,
                         e.profesion_proveedor,
                         e.foto_proveedor,
-                    FROM tbl_proveedors AS e
+                    FROM tbl_proveedor AS e
                     WHERE id_proveedor =%s
                     ORDER BY e.id_proveedor DESC
                     """)
@@ -505,7 +505,7 @@ def proveedoresReporte():
                             WHEN e.sexo_proveedor = 1 THEN 'Masculino'
                             ELSE 'Femenino'
                         END AS sexo_proveedor
-                    FROM tbl_proveedors AS e
+                    FROM tbl_proveedor AS e
                     ORDER BY e.id_proveedor DESC
                     """)
                 cursor.execute(querySQL,)
@@ -531,7 +531,7 @@ def buscarproveedoresBD(search):
                                 WHEN e.sexo_proveedor = 1 THEN 'Masculino'
                                 ELSE 'Femenino'
                             END AS sexo_proveedor
-                        FROM tbl_proveedors AS e
+                        FROM tbl_proveedor AS e
                         WHERE e.nombre_proveedor LIKE %s 
                         ORDER BY e.id_proveedor DESC
                     """)
@@ -558,7 +558,7 @@ def buscarproveedoresUnico(id):
                             e.telefono_proveedor,
                             e.email_proveedor,
                             e.foto_proveedor
-                        FROM tbl_proveedors AS e
+                        FROM tbl_proveedor AS e
                         WHERE e.id_proveedor =%s LIMIT 1
                     """)
                 mycursor.execute(querySQL, (id,))
@@ -586,7 +586,7 @@ def procesar_actualizacion_form(data):
                     fotoForm = procesar_imagen_perfil(file)
 
                     querySQL = """
-                        UPDATE tbl_proveedores
+                        UPDATE tbl_proveedor
                         SET 
                             nombre_proveedor = %s,
                             apellido_proveedor = %s,
@@ -601,7 +601,7 @@ def procesar_actualizacion_form(data):
                             fotoForm, id_proveedor)
                 else:
                     querySQL = """
-                        UPDATE tbl_proveedores
+                        UPDATE tbl_proveedor
                         SET 
                             nombre_proveedor = %s,
                             apellido_proveedor = %s,
