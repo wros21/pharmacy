@@ -40,7 +40,7 @@
             </tr>
           </thead>
           <tbody>
-            {% for proveedor in proveedors %}
+            {% for proveedor in proveedores %}
             <tr id="proveedor_{{ proveedor.id_proveedor }}">
               <td>{{ loop.index }}</td>
               <td>{{ proveedor.nombre_proveedor }}</td>
@@ -61,7 +61,7 @@
                   Ver detalles
                 </a>
                 <a
-                  href="{{ url_for('viewEditarproveedor', id = proveedor.id_proveedor) }}"
+                  href="{{ url_for('viewEditarProveedor', id = proveedor.id_proveedor) }}"
                   class="btn btn-success btn-sm"
                   tooltip="Actualizar Registro">
                   <i class="bi bi-arrow-clockwise"></i>
@@ -69,13 +69,13 @@
                 </a>
                 <a
                   href="#"
-                  onclick="eliminarproveedor('{{ proveedor.id_proveedor }}','{{ proveedor.foto_proveedor }}');"
+                  onclick="eliminarProveedor('{{ proveedor.id_proveedor }}','{{ proveedor.foto_proveedor }}');"
                   class="btn btn-danger btn-sm"
                   data-bs-toggle="tooltip"
                   data-bs-offset="0,4"
                   data-bs-placement="top"
                   data-bs-html="true"
-                  title="<span>Eliminar proveedor {{ proveedor.nombre_proveedor }}</span>">
+                  title="<span>Eliminar Proveedor {{ proveedor.nombre_proveedor }}</span>">
                   <i class="bi bi-trash3"></i>
                   Eliminar
                 </a>
