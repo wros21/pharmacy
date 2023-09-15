@@ -431,7 +431,7 @@ def procesar_imagen_perfil(foto):
         return []
 
 
-# Lista de proveedors
+# Lista de proveedores
 def sql_lista_proveedoresBD():
     try:
         with connectionBD() as conexion_MySQLdb:
@@ -621,6 +621,29 @@ def procesar_actualizacion_form(data):
     except Exception as e:
         print(f"Ocurrió un error en procesar_actualizacion_form: {e}")
         return None
+
+def eliminarProveedor(id_proveedor, foto_proveedor):
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "DELETE FROM tbl_proveedor WHERE id_proveedor=%s"
+                cursor.execute(querySQL, (id_proveedor,))
+                conexion_MySQLdb.commit()
+                resultado_eliminar = cursor.rowcount
+
+                if resultado_eliminar:
+                    # Eliminadon foto_proveedor desde el directorio
+                    basepath = path.dirname(__file__)
+                    url_File = path.join(
+                        basepath, '../static/fotos_proveedores', foto_proveedor)
+
+                    if path.exists(url_File):
+                        remove(url_File)  # Borrar foto desde la carpeta
+
+        return resultado_eliminar
+    except Exception as e:
+        print(f"Error en eliminarProveedor : {e}")
+        return []
 
 
 
