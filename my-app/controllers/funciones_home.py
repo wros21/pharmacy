@@ -436,7 +436,7 @@ def sql_lista_proveedoresBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                querySQL = (f"""
+                querySQL = ("""
                     SELECT 
                         e.id_proveedor,
                         e.nombre_proveedor, 
@@ -517,7 +517,6 @@ def proveedoresReporte():
         return None
 
 
-
 def buscarproveedoresBD(search):
     try:
         with connectionBD() as conexion_MySQLdb:
@@ -545,7 +544,7 @@ def buscarproveedoresBD(search):
         return []
 
 
-def buscarproveedoresUnico(id):
+def buscarproveedorUnico(id):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as mycursor:
@@ -566,7 +565,7 @@ def buscarproveedoresUnico(id):
                 return proveedor
 
     except Exception as e:
-        print(f"Ocurrió un error en def buscarproveedoresUnico: {e}")
+        print(f"Ocurrió un error en def buscarproveedorUnico: {e}")
         return []
 
 
