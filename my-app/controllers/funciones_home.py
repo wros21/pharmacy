@@ -432,7 +432,7 @@ def procesar_imagen_perfil(foto):
 
 
 # Lista de proveedors
-def sql_lista_proveedorsBD():
+def sql_lista_proveedoresBD():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
@@ -454,12 +454,12 @@ def sql_lista_proveedorsBD():
         return proveedorsBD
     except Exception as e:
         print(
-            f"Errro en la función sql_lista_proveedorsBD: {e}")
+            f"Errro en la función sql_lista_proveedoresBD: {e}")
         return None
 
 
 # Detalles del proveedor
-def sql_detalles_proveedorsBD(idproveedor):
+def sql_detalles_proveedoresBD(idproveedor):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
@@ -485,12 +485,12 @@ def sql_detalles_proveedorsBD(idproveedor):
         return proveedorsBD
     except Exception as e:
         print(
-            f"Errro en la función sql_detalles_proveedorsBD: {e}")
+            f"Errro en la función sql_detalles_proveedoresBD: {e}")
         return None
 
 
 # Funcion proveedors Informe (Reporte)
-def proveedorsReporte():
+def proveedoresReporte():
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
@@ -513,12 +513,12 @@ def proveedorsReporte():
         return proveedorsBD
     except Exception as e:
         print(
-            f"Errro en la función proveedorsReporte: {e}")
+            f"Errro en la función proveedoresReporte: {e}")
         return None
 
 
 
-def buscarproveedorBD(search):
+def buscarproveedoresBD(search):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as mycursor:
@@ -541,11 +541,11 @@ def buscarproveedorBD(search):
                 return resultado_busqueda
 
     except Exception as e:
-        print(f"Ocurrió un error en def buscarproveedorBD: {e}")
+        print(f"Ocurrió un error en def buscarproveedoresBD: {e}")
         return []
 
 
-def buscarproveedorUnico(id):
+def buscarproveedoresUnico(id):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as mycursor:
@@ -566,7 +566,7 @@ def buscarproveedorUnico(id):
                 return proveedor
 
     except Exception as e:
-        print(f"Ocurrió un error en def buscarproveedorUnico: {e}")
+        print(f"Ocurrió un error en def buscarproveedoresUnico: {e}")
         return []
 
 
@@ -586,7 +586,7 @@ def procesar_actualizacion_form(data):
                     fotoForm = procesar_imagen_perfil(file)
 
                     querySQL = """
-                        UPDATE tbl_proveedors
+                        UPDATE tbl_proveedores
                         SET 
                             nombre_proveedor = %s,
                             apellido_proveedor = %s,
@@ -601,7 +601,7 @@ def procesar_actualizacion_form(data):
                             fotoForm, id_proveedor)
                 else:
                     querySQL = """
-                        UPDATE tbl_proveedors
+                        UPDATE tbl_proveedores
                         SET 
                             nombre_proveedor = %s,
                             apellido_proveedor = %s,
