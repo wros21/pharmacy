@@ -913,7 +913,7 @@ def procesar_actualizacion_form(data):
                             precio_producto = %s
                         WHERE id_productos = %s
                     """
-                    values = ((nombre_producto, descripcion_producto, cantidad_producto,
+                    values = (nombre_producto, descripcion_producto, cantidad_producto,
                               precio_producto, id_productos)
 
                 cursor.execute(querySQL, values)
