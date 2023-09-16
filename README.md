@@ -13,8 +13,6 @@
 
 ### Manual de USO
 
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/Dashboard-python-login-urian-viera.png)
-![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/dashboard-python-crear-user-urian-viera.png)
 
 
 ### Instrucciones para descarga 🔧

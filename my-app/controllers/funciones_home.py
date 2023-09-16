@@ -56,7 +56,7 @@ def procesar_imagen_perfil(foto):
 
         # Construir la ruta completa de subida del archivo
         basepath = os.path.abspath(os.path.dirname(__file__))
-        upload_dir = os.path.join(basepath, f'../static/fotos_empleados/')
+        upload_dir = os.path.join(basepath, '../static/fotos_empleados/')
 
         # Validar si existe la ruta y crearla si no existe
         if not os.path.exists(upload_dir):
@@ -400,7 +400,7 @@ def procesar_form_proveedor(dataForm, foto_perfil):
         return f'Se produjo un error en procesar_form_proveedor: {str(e)}'
 
 
-def procesar_imagen_perfil(foto):
+def procesar_imagen_perfil_proveedor(foto):
     try:
         # Nombre original del archivo
         filename = secure_filename(foto.filename)
@@ -412,7 +412,7 @@ def procesar_imagen_perfil(foto):
 
         # Construir la ruta completa de subida del archivo
         basepath = os.path.abspath(os.path.dirname(__file__))
-        upload_dir = os.path.join(basepath, f'../static/fotos_proveedors/')
+        upload_dir = os.path.join(basepath, '../static/fotos_proveedors/')
 
         # Validar si existe la ruta y crearla si no existe
         if not os.path.exists(upload_dir):
@@ -569,7 +569,7 @@ def buscarproveedorUnico(id):
         return []
 
 
-def procesar_actualizacion_form(data):
+def procesar_actualizacion_form_proveedor(data):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
@@ -597,7 +597,7 @@ def procesar_actualizacion_form(data):
                     """
                     values = (nombre_proveedor, apellido_proveedor, sexo_proveedor,
                               telefono_proveedor, email_proveedor,
-                            fotoForm, id_proveedor)
+                            fotoForm)
                 else:
                     querySQL = """
                         UPDATE tbl_proveedor
@@ -610,8 +610,7 @@ def procesar_actualizacion_form(data):
                         WHERE id_proveedor = %s
                     """
                     values = (nombre_proveedor, apellido_proveedor, sexo_proveedor,
-                              telefono_proveedor, email_proveedor,
-                             id_proveedor)
+                              telefono_proveedor, email_proveedor)
 
                 cursor.execute(querySQL, values)
                 conexion_MySQLdb.commit()
@@ -688,7 +687,7 @@ def procesar_imagen_producto(foto):
 
         # Construir la ruta completa de subida del archivo
         basepath = os.path.abspath(os.path.dirname(__file__))
-        upload_dir = os.path.join(basepath, f'../static/fotos_productos/')
+        upload_dir = os.path.join(basepath, '../static/fotos_productos/')
 
         # Validar si existe la ruta y crearla si no existe
         if not os.path.exists(upload_dir):
@@ -782,8 +781,8 @@ def productosReporte():
         return None
 
 
-def generarReporteExcel():
-    dataProductos = prodcutosReporte()
+"""def generarReporteExcelProductos():
+    dataProductos = productosReporte()
     wb = openpyxl.Workbook()
     hoja = wb.active
 
@@ -828,7 +827,7 @@ def generarReporteExcel():
     # Enviar el archivo como respuesta HTTP
     return send_file(ruta_archivo, as_attachment=True)
 
-
+"""
 def buscarProductoBD(search):
     try:
         with connectionBD() as conexion_MySQLdb:
@@ -875,12 +874,13 @@ def buscarProductoUnico(id):
         return []
 
 
-def procesar_actualizacion_form(data):
+def procesar_actualizacion_form_producto(data):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
                 nombre_producto = data.form['nombre_producto']
                 descripcion_producto = data.form['descripcion_producto']
+                cantidad_producto = data.form['cantidad_producto']
                 precio_sin_puntos = re.sub(
                     '[^0-9]+', '', data.form['precio_producto'])
                 precio_producto = int(precio_sin_puntos)
