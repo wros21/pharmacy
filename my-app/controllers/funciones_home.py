@@ -656,7 +656,7 @@ def procesar_form_producto(dataForm, foto_perfil):
     # convertir salario a INT
     precio_entero = int(precio_sin_punto)
 
-    result_foto_producto = procesar_imagen_producto(foto_producto)
+    result_foto_perfil = procesar_imagen_producto(foto_perfil)
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
@@ -665,7 +665,7 @@ def procesar_form_producto(dataForm, foto_perfil):
 
                 # Creando una tupla con los valores del INSERT
                 valores = (dataForm['nombre_producto'], dataForm['descripcion_producto'], dataForm['cantidad_producto'],
-                           dataForm['precio_producto'], dataForm['foto_producto'], result_foto_producto, precio_entero)
+                           dataForm['precio_producto'], dataForm['foto_producto'], result_foto_perfil, precio_entero)
                 cursor.execute(sql, valores)
 
                 conexion_MySQLdb.commit()
