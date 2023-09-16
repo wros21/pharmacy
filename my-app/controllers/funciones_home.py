@@ -879,8 +879,8 @@ def procesar_actualizacion_form(data):
     try:
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
-                nombre_producto = data.form['nombre_empleado']
-                descripcion_producto = data.form['apellido_empleado']
+                nombre_producto = data.form['nombre_producto']
+                descripcion_producto = data.form['descripcion_producto']
                 precio_sin_puntos = re.sub(
                     '[^0-9]+', '', data.form['precio_producto'])
                 precio_producto = int(precio_sin_puntos)
@@ -931,7 +931,7 @@ def eliminarProducto(id_productos, foto_producto):
         with connectionBD() as conexion_MySQLdb:
             with conexion_MySQLdb.cursor(dictionary=True) as cursor:
                 querySQL = "DELETE FROM tbl_productos WHERE id_productos=%s"
-                cursor.execute(querySQL, (id_empleado,))
+                cursor.execute(querySQL, (id_productos,))
                 conexion_MySQLdb.commit()
                 resultado_eliminar = cursor.rowcount
 
