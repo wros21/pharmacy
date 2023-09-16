@@ -88,7 +88,7 @@ def viewEditarEmpleado(id):
 
 # Recibir formulario para actulizar informacion de empleado
 @app.route('/actualizar-empleado', methods=['POST'])
-def actualizarEmpleado():
+def viewactualizarEmpleado():
     resultData = procesar_actualizacion_form(request)
     if resultData:
         return redirect(url_for('lista_empleados'))
