@@ -649,6 +649,309 @@ def eliminarProveedor(id_proveedor, foto_proveedor):
 
 ###FIN PROVEEDORES####
 
+####INICIO PRODUCTOS
+def procesar_form_producto(dataForm, foto_perfil):
+    # Formateando Precio
+    precio_sin_punto = re.sub('[^0-9]+', '', dataForm['precio_producto'])
+    # convertir salario a INT
+    precio_entero = int(precio_sin_punto)
+
+    result_foto_producto = procesar_imagen_producto(foto_producto)
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+
+                sql = "INSERT INTO tbl_productos (nombre_producto, descripcion_producto, cantidad_producto, precio_producto, foto_producto) VALUES (%s, %s, %s, %s, %s)"
+
+                # Creando una tupla con los valores del INSERT
+                valores = (dataForm['nombre_producto'], dataForm['descripcion_producto'], dataForm['cantidad_producto'],
+                           dataForm['precio_producto'], dataForm['foto_producto'], result_foto_producto, precio_entero)
+                cursor.execute(sql, valores)
+
+                conexion_MySQLdb.commit()
+                resultado_insert = cursor.rowcount
+                return resultado_insert
+
+    except Exception as e:
+        return f'Se produjo un error en procesar_form_producto: {str(e)}'
+
+
+def procesar_imagen_producto(foto):
+    try:
+        # Nombre original del archivo
+        filename = secure_filename(foto.filename)
+        extension = os.path.splitext(filename)[1]
+
+        # Creando un string de 50 caracteres
+        nuevoNameFile = (uuid.uuid4().hex + uuid.uuid4().hex)[:100]
+        nombreFile = nuevoNameFile + extension
+
+        # Construir la ruta completa de subida del archivo
+        basepath = os.path.abspath(os.path.dirname(__file__))
+        upload_dir = os.path.join(basepath, f'../static/fotos_productos/')
+
+        # Validar si existe la ruta y crearla si no existe
+        if not os.path.exists(upload_dir):
+            os.makedirs(upload_dir)
+            # Dando permiso a la carpeta
+            os.chmod(upload_dir, 0o755)
+
+        # Construir la ruta completa de subida del archivo
+        upload_path = os.path.join(upload_dir, nombreFile)
+        foto.save(upload_path)
+
+        return nombreFile
+
+    except Exception as e:
+        print("Error al procesar archivo:", e)
+        return []
+
+
+# Lista de Empleados
+def sql_lista_productosBD():
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = ("""
+                    SELECT 
+                        e.id_productos,
+                        e.nombre_producto, 
+                        e.descripcion_producto,
+                        e.cantidad_producto,
+                        e.precio_producto,
+                        e.foto_producto,
+                    FROM tbl_productos AS e
+                    ORDER BY e.id_productos DESC
+                    """)
+                cursor.execute(querySQL,)
+                productosBD = cursor.fetchall()
+        return productosBD
+    except Exception as e:
+        print(
+            f"Error en la función sql_lista_productosBD: {e}")
+        return None
+
+
+# Detalles del Productos
+def sql_detalles_productosBD(idEmpleado):
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = ("""
+                    SELECT 
+                        e.id_productos,
+                        e.nombre_producto, 
+                        e.descripcion_producto,
+                        e.precio_producto,
+                        e.cantidad_producto, 
+                        e.foto_producto,
+                    FROM tbl_productos AS e
+                    WHERE id_produtos =%s
+                    ORDER BY e.id_productos DESC
+                    """)
+                cursor.execute(querySQL, (idEmpleado,))
+                productosBD = cursor.fetchone()
+        return productosBD
+    except Exception as e:
+        print(
+            f"Errro en la función sql_detalles_productosBD: {e}")
+        return None
+
+
+# Funcion Productos Informe (Reporte)
+def productosReporte():
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = ("""
+                    SELECT 
+                        e.id_productos,
+                        e.nombre_producto, 
+                        e.descripcion_producto,
+                        e.precio_producto,
+                        e.cantidad_producto, 
+                    FROM tbl_productos AS e
+                    ORDER BY e.id_productos DESC
+                    """)
+                cursor.execute(querySQL,)
+                productosBD = cursor.fetchall()
+        return productosBD
+    except Exception as e:
+        print(
+            f"Errro en la función productosReporte: {e}")
+        return None
+
+
+def generarReporteExcel():
+    dataProductos = prodcutosReporte()
+    wb = openpyxl.Workbook()
+    hoja = wb.active
+
+    # Agregar la fila de encabezado con los títulos
+    cabeceraExcel = ("Nombre", "Descripcion", "Cantidad","Precio")
+
+    hoja.append(cabeceraExcel)
+
+    # Formato para números en moneda Guatemalteca y sin decimales
+    formato_moneda_guatemalteco = '#,##'
+
+    # Agregar los registros a la hoja
+    for registro in dataProductos:
+        nombre_producto = registro['nombre_producto']
+        descripcion_producto = registro['descripcion_producto']
+        cantidad_producto = registro['cantidad_producto']
+        precio_producto = registro['precio_producto']
+
+        # Agregar los valores a la hoja
+        hoja.append((nombre_producto, descripcion_producto, cantidad_producto, precio_producto))
+
+        # Itera a través de las filas y aplica el formato a la columna G
+        for fila_num in range(2, hoja.max_row + 1):
+            columna = 7  # Columna G
+            celda = hoja.cell(row=fila_num, column=columna)
+            celda.number_format = formato_moneda_guatemalteco
+
+    fecha_actual = datetime.datetime.now()
+    archivoExcel = f"Reporte_productos_{fecha_actual.strftime('%Y_%m_%d')}.xlsx"
+    carpeta_descarga = "../static/downloads-excel"
+    ruta_descarga = os.path.join(os.path.dirname(
+        os.path.abspath(__file__)), carpeta_descarga)
+
+    if not os.path.exists(ruta_descarga):
+        os.makedirs(ruta_descarga)
+        # Dando permisos a la carpeta
+        os.chmod(ruta_descarga, 0o755)
+
+    ruta_archivo = os.path.join(ruta_descarga, archivoExcel)
+    wb.save(ruta_archivo)
+
+    # Enviar el archivo como respuesta HTTP
+    return send_file(ruta_archivo, as_attachment=True)
+
+
+def buscarProductoBD(search):
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as mycursor:
+                querySQL = ("""
+                        SELECT 
+                            e.id_productos,
+                            e.nombre_producto, 
+                            e.descripcion_producto,
+                            e.precio_producto,
+                        FROM tbl_productos AS e
+                        WHERE e.nombre_producto LIKE %s 
+                        ORDER BY e.id_productos DESC
+                    """)
+                search_pattern = f"%{search}%"  # Agregar "%" alrededor del término de búsqueda
+                mycursor.execute(querySQL, (search_pattern,))
+                resultado_busqueda = mycursor.fetchall()
+                return resultado_busqueda
+
+    except Exception as e:
+        print(f"Ocurrió un error en def buscarProductoBD: {e}")
+        return []
+
+
+def buscarProductoUnico(id):
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as mycursor:
+                querySQL = ("""
+                        SELECT 
+                            e.id_productos,
+                            e.nombre_producto, 
+                            e.descripcion_producto,
+                            e.precio_producto,
+                        FROM tbl_productos AS e
+                        WHERE e.id_productos =%s LIMIT 1
+                    """)
+                mycursor.execute(querySQL, (id,))
+                productosBD = mycursor.fetchone()
+                return productosBD
+
+    except Exception as e:
+        print(f"Ocurrió un error en def buscarProductoUnico: {e}")
+        return []
+
+
+def procesar_actualizacion_form(data):
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                nombre_producto = data.form['nombre_empleado']
+                descripcion_producto = data.form['apellido_empleado']
+                precio_sin_puntos = re.sub(
+                    '[^0-9]+', '', data.form['precio_producto'])
+                precio_producto = int(precio_sin_puntos)
+                id_productos = data.form['id_productos']
+
+                if data.files['foto_producto']:
+                    file = data.files['foto_producto']
+                    fotoForm = procesar_imagen_perfil(file)
+
+                    querySQL = """
+                        UPDATE tbl_productos
+                        SET 
+                            nombre_producto = %s,
+                            descripcio_producto = %s,
+                            cantidad_producto = %s,
+                            precio_producto = %s,
+                            foto_producto = %s
+                        WHERE id_productos = %s
+                    """
+                    values = (nombre_producto, descripcion_producto, cantidad_producto,
+                              precio_producto, fotoForm, id_productos)
+                              
+                else:
+                    querySQL = """
+                        UPDATE tbl_productos
+                        SET 
+                            nombre_producto = %s,
+                            descripcion_producto = %s,
+                            cantidad_producto = %s,
+                            precio_producto = %s
+                        WHERE id_productos = %s
+                    """
+                    values = ((nombre_producto, descripcion_producto, cantidad_producto,
+                              precio_producto, id_productos)
+
+                cursor.execute(querySQL, values)
+                conexion_MySQLdb.commit()
+
+        return cursor.rowcount or []
+    except Exception as e:
+        print(f"Ocurrió un error en procesar_actualizacion_form: {e}")
+        return None
+
+
+# Eliminar Producto
+def eliminarProducto(id_productos, foto_producto):
+    try:
+        with connectionBD() as conexion_MySQLdb:
+            with conexion_MySQLdb.cursor(dictionary=True) as cursor:
+                querySQL = "DELETE FROM tbl_productos WHERE id_productos=%s"
+                cursor.execute(querySQL, (id_empleado,))
+                conexion_MySQLdb.commit()
+                resultado_eliminar = cursor.rowcount
+
+                if resultado_eliminar:
+                    # Eliminadon foto_producto desde el directorio
+                    basepath = path.dirname(__file__)
+                    url_File = path.join(
+                        basepath, '../static/fotos_productos', foto_producto)
+
+                    if path.exists(url_File):
+                        remove(url_File)  # Borrar foto desde la carpeta
+
+        return resultado_eliminar
+    except Exception as e:
+        print(f"Error en eliminarProducto : {e}")
+        return []
+
+
+####FIN PRODUCTOS
+
 
 # Eliminar usuario
 def eliminarUsuario(id):
