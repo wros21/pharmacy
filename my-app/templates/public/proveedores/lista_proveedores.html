@@ -41,7 +41,7 @@
           </thead>
           <tbody>
             {% for proveedor in proveedor %}
-            <tr id="proveedor_{{ proveedor.id_proveedor }}">
+            <tr id="id_proveedor{{ proveedor.id_proveedor }}">
               <td>{{ loop.index }}</td>
               <td>{{ proveedor.nombre_proveedor }}</td>
               <td>{{ proveedor.apellido_proveedor }}</td>
