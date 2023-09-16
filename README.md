@@ -11,6 +11,10 @@
     phpMyAdmin (opcional)
     Puedes usar un todo en uno como XAMPP, WAMPP u otro.
 
+### Manual de USO
+
+![](https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/Dashboard-python-login-urian-viera.png)
+
 ### Instrucciones para descarga 🔧
 
     Descarga el proyecto
